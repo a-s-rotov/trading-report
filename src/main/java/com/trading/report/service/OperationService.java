@@ -107,7 +107,7 @@ public class OperationService {
                 newBuyEntity.setBuyQuantity(entity.getBuyQuantity() - found.getSellQuantity());
                 newBuyEntity.setBuyCommission(
                         entity.getBuyCommission()
-                                .divide(BigDecimal.valueOf(entity.getBuyQuantity()))
+                                .divide(BigDecimal.valueOf(entity.getBuyQuantity()), 2, RoundingMode.HALF_UP)
                                 .multiply(BigDecimal.valueOf(newBuyEntity.getBuyQuantity()))
                 );
                 newBuyEntity.setBuySum(newBuyEntity.getBuyPrice()
@@ -127,7 +127,7 @@ public class OperationService {
                 newSellEntity.setSellQuantity(found.getSellQuantity() + entity.getBuyQuantity());
                 newSellEntity.setSellCommission(
                         found.getSellCommission()
-                                .divide(BigDecimal.valueOf(found.getSellQuantity()))
+                                .divide(BigDecimal.valueOf(found.getSellQuantity()), 2, RoundingMode.HALF_UP)
                                 .multiply(BigDecimal.valueOf(newSellEntity.getSellQuantity()))
                 );
                 newSellEntity.setSellSum(newSellEntity.getSellPrice()
@@ -201,8 +201,9 @@ public class OperationService {
             operationEntity.setBuySum(operation.payment);
         }
 
-        if (!operation.operationType.equals(OperationType.Buy) &&
-                !operation.operationType.equals(OperationType.Sell)) {
+        if (!operation.operationType.equals(OperationType.Buy)
+                && !operation.operationType.equals(OperationType.BuyCard)
+                && !operation.operationType.equals(OperationType.Sell)) {
             operationEntity.setInstrument(operation.operationType.toString());
             operationEntity.setResult(operation.payment);
             operationEntity.setNetResult(operation.payment);
