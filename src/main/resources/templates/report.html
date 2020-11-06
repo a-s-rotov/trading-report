@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trading Report</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div>
+<table border="1" style="width:300px">
+    <thead>
+    <h2>Операции в USD</h2>
+    <tr>
+        <th>Дата</th>
+        <th>Инструмент</th>
+        <th>Цена</th>
+        <th>Ед</th>
+        <th>%</th>
+        <th>Сумма</th>
+        <th>Дата</th>
+        <th>Цена</th>
+        <th>Ед</th>
+        <th>%</th>
+        <th>Сумма</th>
+        <th>Выручка</th>
+        <th>Прибыль</th>
+        <th>Владение</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${usd.empty}">
+        <td colspan="2"> Нет операций в USD</td>
+    </tr>
+    <tr th:each="operation : ${usd}">
+        <td nowrap=><span th:text="${#temporals.format(operation.startDate, 'dd.MM.yyyy HH:mm')}"></span></td>
+        <td><span th:text="${operation.instrument}"></span></td>
+        <td><span th:text="${#numbers.formatDecimal(operation.buyPrice, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+        <td><span th:text="${operation.buyQuantity}"></span></td>
+        <td><span th:text="${#numbers.formatDecimal(operation.buyCommission, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+        <td width="200"><span th:text="${#numbers.formatDecimal(operation.buySum, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+        <td nowrap><span th:text="${#temporals.format(operation.endDate, 'dd.MM.yyyy HH:mm')}"></span></td>
+        <td><span th:text="${#numbers.formatDecimal(operation.sellPrice, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+        <td><span th:text="${operation.sellQuantity}"></span></td>
+        <td><span th:text="${#numbers.formatDecimal(operation.sellCommission, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+        <td><span th:text="${#numbers.formatDecimal(operation.sellSum, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+        <td><span th:text="${#numbers.formatDecimal(operation.result, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+        <td><span th:text="${#numbers.formatDecimal(operation.netResult, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+        <td><span th:text="${operation.earningDuration}"></span></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<div>
+    <table border="1" style="width:300px">
+        <thead>
+        <h2>Операции в EUR</h2>
+        <tr>
+            <th>Дата</th>
+            <th>Инструмент</th>
+            <th>Цена</th>
+            <th>Ед</th>
+            <th>%</th>
+            <th>Сумма</th>
+            <th>Дата</th>
+            <th>Цена</th>
+            <th>Ед</th>
+            <th>%</th>
+            <th>Сумма</th>
+            <th>Выручка</th>
+            <th>Прибыль</th>
+            <th>Владение</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${eur.empty}">
+            <td colspan="2"> Нет операций в EUR</td>
+        </tr>
+        <tr th:each="operation : ${eur}">
+            <td nowrap=><span th:text="${#temporals.format(operation.startDate, 'dd.MM.yyyy HH:mm')}"></span></td>
+            <td><span th:text="${operation.instrument}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(operation.buyPrice, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td><span th:text="${operation.buyQuantity}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(operation.buyCommission, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td width="200"><span th:text="${#numbers.formatDecimal(operation.buySum, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td nowrap><span th:text="${#temporals.format(operation.endDate, 'dd.MM.yyyy HH:mm')}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(operation.sellPrice, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td><span th:text="${operation.sellQuantity}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(operation.sellCommission, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(operation.sellSum, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(operation.result, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(operation.netResult, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td><span th:text="${operation.earningDuration}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <table border="1" style="width:300px">
+        <thead>
+        <h2>Операции в RUB</h2>
+        <tr>
+            <th>Дата</th>
+            <th>Инструмент</th>
+            <th>Цена</th>
+            <th>Ед</th>
+            <th>%</th>
+            <th>Сумма</th>
+            <th>Дата</th>
+            <th>Цена</th>
+            <th>Ед</th>
+            <th>%</th>
+            <th>Сумма</th>
+            <th>Выручка</th>
+            <th>Прибыль</th>
+            <th>Владение</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${rub.empty}">
+            <td colspan="2"> Нет операций в RUB</td>
+        </tr>
+        <tr th:each="operation : ${rub}">
+            <td nowrap=><span th:text="${#temporals.format(operation.startDate, 'dd.MM.yyyy HH:mm')}"></span></td>
+            <td><span th:text="${operation.instrument}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(operation.buyPrice, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td><span th:text="${operation.buyQuantity}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(operation.buyCommission, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td width="200"><span th:text="${#numbers.formatDecimal(operation.buySum, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td nowrap><span th:text="${#temporals.format(operation.endDate, 'dd.MM.yyyy HH:mm')}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(operation.sellPrice, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td><span th:text="${operation.sellQuantity}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(operation.sellCommission, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(operation.sellSum, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(operation.result, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(operation.netResult, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
+            <td><span th:text="${operation.earningDuration}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
