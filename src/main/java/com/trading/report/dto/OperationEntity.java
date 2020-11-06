@@ -1,12 +1,11 @@
-package com.trading.report;
-
-import lombok.Builder;
-import lombok.Data;
-import ru.tinkoff.invest.openapi.models.Currency;
+package com.trading.report.dto;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.time.Period;
+import lombok.Builder;
+import lombok.Data;
+import ru.tinkoff.invest.openapi.models.Currency;
 
 @Data
 @Builder

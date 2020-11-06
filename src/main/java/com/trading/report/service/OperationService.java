@@ -1,6 +1,17 @@
 package com.trading.report.service;
 
-import com.trading.report.OperationEntity;
+import com.trading.report.dto.OperationEntity;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.OffsetDateTime;
+import java.time.Period;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -11,13 +22,6 @@ import ru.tinkoff.invest.openapi.models.operations.Operation;
 import ru.tinkoff.invest.openapi.models.operations.OperationStatus;
 import ru.tinkoff.invest.openapi.models.operations.OperationType;
 import ru.tinkoff.invest.openapi.models.operations.OperationsList;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.time.OffsetDateTime;
-import java.time.Period;
-import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class OperationService {
