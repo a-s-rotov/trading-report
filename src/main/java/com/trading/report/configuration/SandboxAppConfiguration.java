@@ -23,7 +23,7 @@ public class SandboxAppConfiguration {
   @Bean
   public OpenApi openApi() {
     OkHttpOpenApiFactory factory = new OkHttpOpenApiFactory(token, log);
-    OpenApi api = factory.createOpenApiClient(Executors.newSingleThreadExecutor());
+    OpenApi api = factory.createSandboxOpenApiClient(Executors.newSingleThreadExecutor());
     ((SandboxOpenApi) api).getSandboxContext().performRegistration(null).join();
     return api;
   }
