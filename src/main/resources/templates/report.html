@@ -4,139 +4,123 @@
     <meta charset="UTF-8">
     <title>Trading Report</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" rel="stylesheet">
+    <link>
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
-<div>
-<table border="1" style="width:300px">
-    <thead>
-    <h2>Операции в USD</h2>
-    <tr>
-        <th>Дата</th>
-        <th>Инструмент</th>
-        <th>Цена</th>
-        <th>Ед</th>
-        <th>%</th>
-        <th>Сумма</th>
-        <th>Дата</th>
-        <th>Цена</th>
-        <th>Ед</th>
-        <th>%</th>
-        <th>Сумма</th>
-        <th>Выручка</th>
-        <th>Прибыль</th>
-        <th>Владение</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${usd.empty}">
-        <td colspan="2"> Нет операций в USD</td>
-    </tr>
-    <tr th:each="operation : ${usd}">
-        <td nowrap=><span th:text="${#temporals.format(operation.startDate, 'dd.MM.yyyy HH:mm')}"></span></td>
-        <td><span th:text="${operation.instrument}"></span></td>
-        <td><span th:text="${#numbers.formatDecimal(operation.buyPrice, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-        <td><span th:text="${operation.buyQuantity}"></span></td>
-        <td><span th:text="${#numbers.formatDecimal(operation.buyCommission, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-        <td width="200"><span th:text="${#numbers.formatDecimal(operation.buySum, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-        <td nowrap><span th:text="${#temporals.format(operation.endDate, 'dd.MM.yyyy HH:mm')}"></span></td>
-        <td><span th:text="${#numbers.formatDecimal(operation.sellPrice, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-        <td><span th:text="${operation.sellQuantity}"></span></td>
-        <td><span th:text="${#numbers.formatDecimal(operation.sellCommission, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-        <td><span th:text="${#numbers.formatDecimal(operation.sellSum, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-        <td><span th:text="${#numbers.formatDecimal(operation.result, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-        <td><span th:text="${#numbers.formatDecimal(operation.netResult, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-        <td><span th:text="${operation.earningDuration}"></span></td>
-    </tr>
-    </tbody>
-</table>
-</div>
-<div>
-    <table border="1" style="width:300px">
-        <thead>
-        <h2>Операции в EUR</h2>
-        <tr>
-            <th>Дата</th>
-            <th>Инструмент</th>
-            <th>Цена</th>
-            <th>Ед</th>
-            <th>%</th>
-            <th>Сумма</th>
-            <th>Дата</th>
-            <th>Цена</th>
-            <th>Ед</th>
-            <th>%</th>
-            <th>Сумма</th>
-            <th>Выручка</th>
-            <th>Прибыль</th>
-            <th>Владение</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${eur.empty}">
-            <td colspan="2"> Нет операций в EUR</td>
-        </tr>
-        <tr th:each="operation : ${eur}">
-            <td nowrap=><span th:text="${#temporals.format(operation.startDate, 'dd.MM.yyyy HH:mm')}"></span></td>
-            <td><span th:text="${operation.instrument}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(operation.buyPrice, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td><span th:text="${operation.buyQuantity}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(operation.buyCommission, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td width="200"><span th:text="${#numbers.formatDecimal(operation.buySum, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td nowrap><span th:text="${#temporals.format(operation.endDate, 'dd.MM.yyyy HH:mm')}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(operation.sellPrice, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td><span th:text="${operation.sellQuantity}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(operation.sellCommission, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(operation.sellSum, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(operation.result, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(operation.netResult, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td><span th:text="${operation.earningDuration}"></span></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div>
-    <table border="1" style="width:300px">
-        <thead>
-        <h2>Операции в RUB</h2>
-        <tr>
-            <th>Дата</th>
-            <th>Инструмент</th>
-            <th>Цена</th>
-            <th>Ед</th>
-            <th>%</th>
-            <th>Сумма</th>
-            <th>Дата</th>
-            <th>Цена</th>
-            <th>Ед</th>
-            <th>%</th>
-            <th>Сумма</th>
-            <th>Выручка</th>
-            <th>Прибыль</th>
-            <th>Владение</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${rub.empty}">
-            <td colspan="2"> Нет операций в RUB</td>
-        </tr>
-        <tr th:each="operation : ${rub}">
-            <td nowrap=><span th:text="${#temporals.format(operation.startDate, 'dd.MM.yyyy HH:mm')}"></span></td>
-            <td><span th:text="${operation.instrument}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(operation.buyPrice, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td><span th:text="${operation.buyQuantity}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(operation.buyCommission, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td width="200"><span th:text="${#numbers.formatDecimal(operation.buySum, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td nowrap><span th:text="${#temporals.format(operation.endDate, 'dd.MM.yyyy HH:mm')}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(operation.sellPrice, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td><span th:text="${operation.sellQuantity}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(operation.sellCommission, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(operation.sellSum, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(operation.result, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(operation.netResult, 1, 'WHITESPACE', 2, 'COMMA')}"></span></td>
-            <td><span th:text="${operation.earningDuration}"></span></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+
+<script crossorigin="anonymous"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" href="#">
+            <img alt="" height="30" loading="lazy" src="credit-card.svg" width="30">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                       data-toggle="dropdown"
+                       href="#" role="button">Reports</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" th:href="@{/report?currency=USD}">USD</a>
+                        <a class="dropdown-item" th:href="@{/report?currency=EUR}">EUR</a>
+                        <a class="dropdown-item" th:href="@{/report?currency=RUB}">RUB</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<main role="main">
+    <div class="container">
+        <div>
+            <table class="table table-striped table-sm">
+                <thead>
+                <h1>
+                    <span th:remove="tag">Операции в</span>
+                    <span th:remove="tag" th:text="${currency}">-</span>
+                </h1>
+                <tr>
+                    <th>Дата</th>
+                    <th>Инструмент</th>
+                    <th>Цена</th>
+                    <th>Ед</th>
+                    <th>%</th>
+                    <th>Сумма</th>
+                    <th>Дата</th>
+                    <th>Цена</th>
+                    <th>Ед</th>
+                    <th>%</th>
+                    <th>Сумма</th>
+                    <th>Выручка</th>
+                    <th>Прибыль</th>
+                    <th>Владение</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${report.empty}">
+                    <td colspan="2"> Нет операций в USD</td>
+                </tr>
+                <tr th:each="operation : ${report}">
+                    <td nowrap=><span th:text="${#temporals.format(operation.startDate, 'dd.MM.yyyy HH:mm')}"></span>
+                    </td>
+                    <td><span th:text="${operation.instrument}"></span></td>
+                    <td><span
+                            th:text="${#numbers.formatDecimal(operation.buyPrice, 1, 'WHITESPACE', 2, 'COMMA')}"></span>
+                    </td>
+                    <td><span th:text="${operation.buyQuantity}"></span></td>
+                    <td><span
+                            th:text="${#numbers.formatDecimal(operation.buyCommission, 1, 'WHITESPACE', 2, 'COMMA')}"></span>
+                    </td>
+                    <td width="200"><span
+                            th:text="${#numbers.formatDecimal(operation.buySum, 1, 'WHITESPACE', 2, 'COMMA')}"></span>
+                    </td>
+                    <td nowrap><span th:text="${#temporals.format(operation.endDate, 'dd.MM.yyyy HH:mm')}"></span></td>
+                    <td><span
+                            th:text="${#numbers.formatDecimal(operation.sellPrice, 1, 'WHITESPACE', 2, 'COMMA')}"></span>
+                    </td>
+                    <td><span th:text="${operation.sellQuantity}"></span></td>
+                    <td><span
+                            th:text="${#numbers.formatDecimal(operation.sellCommission, 1, 'WHITESPACE', 2, 'COMMA')}"></span>
+                    </td>
+                    <td><span
+                            th:text="${#numbers.formatDecimal(operation.sellSum, 1, 'WHITESPACE', 2, 'COMMA')}"></span>
+                    </td>
+                    <td><span th:text="${#numbers.formatDecimal(operation.result, 1, 'WHITESPACE', 2, 'COMMA')}"></span>
+                    </td>
+                    <td><span
+                            th:text="${#numbers.formatDecimal(operation.netResult, 1, 'WHITESPACE', 2, 'COMMA')}"></span>
+                    </td>
+                    <td><span th:text="${operation.earningDuration}"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
 </body>
 </html>
