@@ -239,20 +239,6 @@ public class OperationService {
     return operationEntity;
   }
 
-//  private boolean compareOperationType(OperationType first, OperationType second) {
-//    if (((first == OperationType.Buy || first == OperationType.BuyCard) && second == OperationType.Sell) ||
-//            (first == OperationType.Sell && (second == OperationType.Buy || second == OperationType.BuyCard))) {
-//      return false;
-//    }
-//    return true;
-//
-////    if ((first == OperationType.Buy && second == OperationType.BuyCard)
-////      || first == OperationType.BuyCard && second == OperationType.Buy) {
-////      return true;
-////    }
-////    return false;
-//  }
-
   @Builder
   @Data
   private static class StorageItem {
