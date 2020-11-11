@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 @Service
-public class DictionaryService {
+public class FigiDictionaryService {
   @Autowired
   private OpenApi api;
 

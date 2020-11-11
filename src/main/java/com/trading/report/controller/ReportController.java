@@ -1,7 +1,7 @@
 package com.trading.report.controller;
 
 import com.trading.report.service.OperationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,15 +9,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.tinkoff.invest.openapi.models.Currency;
 
 @Controller
+@RequiredArgsConstructor
 public class ReportController {
-  @Autowired
-  private OperationService operationService;
 
-  @GetMapping("/report")
-  public String getReport(@RequestParam(value = "currency", required = false) String currency, Model model) {
+  private final OperationService operationService;
+
+  @GetMapping("/table-report")
+  public String getTableReport(@RequestParam(value = "currency", required = false) String currency, Model model) {
     Currency currentCurrency = currency == null ? Currency.USD : Currency.valueOf(currency.toUpperCase());
-    model.addAttribute("report", operationService.getOperations().get(currentCurrency));
+    model.addAttribute("report", operationService.getOperations(currentCurrency));
     model.addAttribute("currency", currentCurrency.toString());
-    return "report";
+    return "table-report";
+  }
+
+  @GetMapping("/overall-report")
+  public String getOverallReport(Model model) {
+
+    return "overall-report";
   }
 }
