@@ -8,13 +8,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import ru.tinkoff.invest.openapi.OpenApi;
+import ru.tinkoff.invest.openapi.SandboxOpenApi;
 import ru.tinkoff.invest.openapi.okhttp.OkHttpOpenApiFactory;
 
 @Log
 @Configuration
-@Profile("!sandbox")
+@Profile("sandbox")
 @RequiredArgsConstructor
-public class AppConfiguration {
+public class SandboxAppConfiguration {
 
   @Value("${project.token}")
   private String token;
@@ -22,7 +23,8 @@ public class AppConfiguration {
   @Bean
   public OpenApi openApi() {
     OkHttpOpenApiFactory factory = new OkHttpOpenApiFactory(token, log);
-    OpenApi api = factory.createOpenApiClient(Executors.newSingleThreadExecutor());
+    OpenApi api = factory.createSandboxOpenApiClient(Executors.newSingleThreadExecutor());
+    ((SandboxOpenApi) api).getSandboxContext().performRegistration(null).join();
     return api;
   }
 }
